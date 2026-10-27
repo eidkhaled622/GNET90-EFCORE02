@@ -11,5 +11,7 @@ namespace Models
         public string Bio { get; set; }
         public string Link { get; set; }
         public string logo { get; set; }
+        public int OrganizerID { get; set; }
+        public Organizer organizer { get; set; }
     }
 }

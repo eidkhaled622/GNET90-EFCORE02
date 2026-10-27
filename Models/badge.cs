@@ -10,5 +10,8 @@ namespace GNET90_EFCORE02.Models
         public int id { get; set; }
         public DateTime IssueDate { get; set; }
         public Tier Attendee_Tier { get; set; }
+
+        public int AttendeeId { get; set; }
+        public Attendee Attendee { get; set; }
     }
 }

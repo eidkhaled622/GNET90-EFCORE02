@@ -11,5 +11,6 @@ namespace GNET90_EFCORE02.Models
         public string name { get; set; }
         public string Email { get; set; }
         public Address Address { get; set; }
+        public Badge? Badge { get; set; }
     }
 }
