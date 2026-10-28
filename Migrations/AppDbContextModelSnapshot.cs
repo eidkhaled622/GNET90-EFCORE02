@@ -33,11 +33,13 @@ namespace GNET90_EFCORE02.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.ComplexProperty(typeof(Dictionary<string, object>), "Address", "GNET90_EFCORE02.Models.Attendee.Address#Address", b1 =>
                         {
@@ -45,15 +47,24 @@ namespace GNET90_EFCORE02.Migrations
 
                             b1.Property<string>("ZipCode")
                                 .IsRequired()
-                                .HasColumnType("nvarchar(max)");
+                                .HasMaxLength(20)
+                                .HasColumnType("nvarchar(20)")
+                                .HasColumnName("ZIPCode");
 
                             b1.Property<string>("city")
                                 .IsRequired()
-                                .HasColumnType("nvarchar(max)");
+                                .HasMaxLength(100)
+                                .HasColumnType("nvarchar(100)");
+
+                            b1.Property<string>("country")
+                                .IsRequired()
+                                .HasMaxLength(100)
+                                .HasColumnType("nvarchar(100)");
 
                             b1.Property<string>("street")
                                 .IsRequired()
-                                .HasColumnType("nvarchar(max)");
+                                .HasMaxLength(150)
+                                .HasColumnType("nvarchar(150)");
                         });
 
                     b.HasKey("Id");
@@ -131,15 +142,17 @@ namespace GNET90_EFCORE02.Migrations
 
                     b.Property<string>("ComponyName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Organizers");
+                    b.ToTable("EventOrganizers");
                 });
 
             modelBuilder.Entity("Models.organizerProfile", b =>
