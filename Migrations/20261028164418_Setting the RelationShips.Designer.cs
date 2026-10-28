@@ -13,8 +13,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GNET90_EFCORE02.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20261028003813_Annotations on Organizer&Attendee")]
-    partial class AnnotationsonOrganizerAttendee
+    [Migration("20261028164418_Setting the RelationShips")]
+    partial class SettingtheRelationShips
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -110,14 +110,16 @@ namespace GNET90_EFCORE02.Migrations
 
                     b.Property<string>("Desc")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("OrganizerID")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<string>("endDate")
                         .HasColumnType("nvarchar(max)");

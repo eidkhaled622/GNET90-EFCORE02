@@ -17,11 +17,12 @@ namespace GNET90_EFCORE02.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Address_ZipCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Address_city = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Address_street = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    name = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    ZIPCode = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Address_city = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Address_country = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Address_street = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -29,17 +30,17 @@ namespace GNET90_EFCORE02.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Organizers",
+                name: "EventOrganizers",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ComponyName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    ComponyName = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Organizers", x => x.Id);
+                    table.PrimaryKey("PK_EventOrganizers", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -80,9 +81,9 @@ namespace GNET90_EFCORE02.Migrations
                 {
                     table.PrimaryKey("PK_Events", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Events_Organizers_OrganizerID",
+                        name: "FK_Events_EventOrganizers_OrganizerID",
                         column: x => x.OrganizerID,
-                        principalTable: "Organizers",
+                        principalTable: "EventOrganizers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -102,9 +103,9 @@ namespace GNET90_EFCORE02.Migrations
                 {
                     table.PrimaryKey("PK_organizerProfiles", x => x.id);
                     table.ForeignKey(
-                        name: "FK_organizerProfiles_Organizers_OrganizerID",
+                        name: "FK_organizerProfiles_EventOrganizers_OrganizerID",
                         column: x => x.OrganizerID,
-                        principalTable: "Organizers",
+                        principalTable: "EventOrganizers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -143,7 +144,7 @@ namespace GNET90_EFCORE02.Migrations
                 name: "Attenders");
 
             migrationBuilder.DropTable(
-                name: "Organizers");
+                name: "EventOrganizers");
         }
     }
 }

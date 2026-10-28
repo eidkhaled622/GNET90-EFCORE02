@@ -13,8 +13,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GNET90_EFCORE02.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20261028001421_fix-Add the Country")]
-    partial class fixAddtheCountry
+    [Migration("20261028004333_InitialSetup")]
+    partial class InitialSetup
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,7 +51,8 @@ namespace GNET90_EFCORE02.Migrations
                             b1.Property<string>("ZipCode")
                                 .IsRequired()
                                 .HasMaxLength(20)
-                                .HasColumnType("nvarchar(20)");
+                                .HasColumnType("nvarchar(20)")
+                                .HasColumnName("ZIPCode");
 
                             b1.Property<string>("city")
                                 .IsRequired()
@@ -154,7 +155,7 @@ namespace GNET90_EFCORE02.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Organizers");
+                    b.ToTable("EventOrganizers");
                 });
 
             modelBuilder.Entity("Models.organizerProfile", b =>
