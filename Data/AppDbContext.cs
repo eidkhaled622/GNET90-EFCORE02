@@ -15,6 +15,12 @@ namespace GNET90_EFCORE02.Data
             optionsBuilder.UseSqlServer("Server=localhost;Database=EventHub;Trusted_Connection=True;TrustServerCertificate=True;");
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Attendee>()
+                .ComplexProperty(o => o.Address); // Composite Attribute
+        }
+
         public DbSet<Organizer> Organizers { get; set; }
         public DbSet<organizerProfile> organizerProfiles { get; set; }
         public DbSet<Attendee> Attenders { get; set; }
